@@ -145,7 +145,12 @@ bot.on('text', async (ctx) => {
             requestEndpoint = `${BASE_URL}/request/intelx`;
             requestBody = { custom_id: ctx.message.from.id, search_content: searchText };
             await handleRequest(ctx, requestEndpoint, requestBody, userState);
-        } else if (userState.command === 'redeem') {
+	} else if (userState.command === 'snus') {
+            requestEndpoint = `${BASE_URL}/request/snus`;
+	    let [type, ...text] = searchText.split(' ');
+            requestBody = { custom_id: ctx.message.from.id, type: type, search_content: text.join(' ') };
+            await handleRequest(ctx, requestEndpoint, requestBody, userState);
+        }else if (userState.command === 'redeem') {
             requestEndpoint = `${BASE_URL}/redeem`;
             requestBody = { key: searchText, custom_id: ctx.message.from.id };
             await handleRequest(ctx, requestEndpoint, requestBody, userState);
