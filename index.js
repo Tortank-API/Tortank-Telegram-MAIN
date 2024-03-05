@@ -124,6 +124,11 @@ bot.command('dump_intelx', (ctx) => {
     ctx.reply('🔎 What ID you want to dump? Please send it to me in the chat.');
 });
 
+// Dump Intelx command
+bot.command('dump_snus', (ctx) => {
+    userStates.set(ctx.message.from.id, { command: 'snus', waitingForInput: true });
+    ctx.reply('debug output please enter {type} {text}');
+});
 
 bot.on('text', async (ctx) => {
     const userId = ctx.message.from.id;
